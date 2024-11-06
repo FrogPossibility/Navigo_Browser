@@ -1,11 +1,10 @@
 import os
-from PyQt5.QtCore import Qt, QUrl, QRectF
-from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QStackedWidget
+from PyQt5.QtCore import Qt, QUrl, QRectF, QObject, QEvent
+from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QStackedWidget, QPushButton, QLineEdit
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngineSettings
 from PyQt5.QtGui import QPainterPath, QRegion, QIcon
 from custom_widgets import VerticalTabWidget
 from custom_titlebar import CustomTitleBar
-from mouse_cursor import apply_cursors
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -92,8 +91,6 @@ class MainWindow(QMainWindow):
         self.title_bar.tab_widget = self.tab_widget
         
         self.setCentralWidget(main_widget)
-        
-        apply_cursors(self)
 
         # Aggiungi la prima tab
         self.add_new_tab()
