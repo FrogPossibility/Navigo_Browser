@@ -8,11 +8,11 @@ class CustomTitleBar(QWidget):
         self.parent = parent
         self.tab_widget = tab_widget
         layout = QHBoxLayout()
-        layout.setContentsMargins(5, 0, 5, 0)
-        layout.setSpacing(5)
+        layout.setContentsMargins(10, 5, 10, 5)
+        layout.setSpacing(10)
 
-        btn_size = 40
-        icon_size = 24
+        btn_size = 36
+        icon_size = 20
 
         self.btn_back = QPushButton(QIcon('icons/back.svg'), '')
         self.btn_back.clicked.connect(self.go_back)
@@ -49,9 +49,21 @@ class CustomTitleBar(QWidget):
         self.url_bar = QLineEdit()
         self.url_bar.setPlaceholderText("Search or enter URL")
         self.url_bar.returnPressed.connect(self.navigate_to_url)
-        self.url_bar.setFixedWidth(800)
-        self.url_bar.setStyleSheet("background-color: #333333; color: #FFFFFF; padding: 5px; border-radius: 10px; font-size: 20px;")
-        layout.addWidget(self.url_bar)
+        self.url_bar.setFixedHeight(36)
+        self.url_bar.setStyleSheet("""
+            QLineEdit {
+                background-color: #2d2d2d;
+                color: #ffffff;
+                padding: 5px 10px;
+                border-radius: 18px;
+                font-size: 14px;
+                border: 1px solid #3a3a3a;
+            }
+            QLineEdit:focus {
+                border: 1px solid #4a4a4a;
+            }
+        """)
+        layout.addWidget(self.url_bar, 1)
 
         layout.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
 
@@ -75,7 +87,20 @@ class CustomTitleBar(QWidget):
         self.setLayout(layout)
         self.setFixedHeight(50)
 
-        buttons_style = "border: none; background-color: transparent;"
+        buttons_style = """
+            QPushButton {
+                border: none;
+                background-color: transparent;
+                border-radius: 18px;
+                padding: 5px;
+            }
+            QPushButton:hover {
+                background-color: #3a3a3a;
+            }
+            QPushButton:pressed {
+                background-color: #454545;
+            }
+        """
         for btn in [self.btn_back, self.btn_forward, self.btn_reload, self.btn_home, 
                    self.btn_new_tab, self.btn_min, self.btn_max, self.btn_close]:
             btn.setStyleSheet(buttons_style)

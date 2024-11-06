@@ -29,7 +29,12 @@ class MainWindow(QMainWindow):
 
         self.setWindowFlags(Qt.FramelessWindowHint)
         self.setAttribute(Qt.WA_TranslucentBackground, False)
-        self.setStyleSheet("background-color: #222222; color: #FFFFFF;")
+        self.setStyleSheet("""
+            QMainWindow {
+                background-color: #1e1e1e;
+                color: #ffffff;
+            }
+        """)
         
 
         main_widget = QWidget()
