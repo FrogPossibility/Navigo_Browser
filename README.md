@@ -4,7 +4,7 @@
 
 ![Navigo Browser Screenshot](screenshot1)
 
-Quantum is a sleek, feature-rich web browser that combines the power of PyQt5 with a user-friendly interface. Designed for both casual users and developers, Quantum offers a unique browsing experience with its vertical tab bar and customizable features.
+Navigo is a sleek, feature-rich web browser that combines the power of PyQt5 with a user-friendly interface. Designed for both casual users and developers, Navigo offers a unique browsing experience with its vertical tab bar and customizable features.
 
 ## ✨ Key Features
 
@@ -25,14 +25,14 @@ Quantum is a sleek, feature-rich web browser that combines the power of PyQt5 wi
 
 ### Steps
 1. Clone the repository:
-git clone https://github.com/yourusername/quantum-browser.git cd quantum-browser
+git clone https://github.com/yourusername/navigo_browser.git cd navigo_browser
 
 2. Install the required dependencies:
 pip install -r requirements.txt
 
 ## 🚀 Usage
 
-Launch Quantum Browser by running:
+Launch Navigo Browser by running:
 python main.py
 
 ## 🗂️ Project Structure
@@ -54,7 +54,7 @@ python main.py
 
 ## 🤝 Contributing
 
-We welcome contributions to Quantum Browser! Feel free to:
+We welcome contributions to Navigo Browser! Feel free to:
 
 - Open issues for bugs or feature requests
 - Submit pull requests for improvements
@@ -69,7 +69,7 @@ Quantum Browser is released under the MIT License. See the [LICENSE](LICENSE) fi
 ## 📞 Contact
 
 For questions or support, please open an issue or contact the maintainer at:
-quantum.browser@example.com
+profrogcreator@gmail.com
 
 ---
 
