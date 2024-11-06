@@ -6,6 +6,7 @@ from PyQt5.QtGui import QPainterPath, QRegion, QIcon
 from custom_widgets import VerticalTabWidget
 from custom_titlebar import CustomTitleBar
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -83,7 +84,6 @@ class MainWindow(QMainWindow):
         self.splitter.setSizes([200, self.width() - 200])
 
         
-        
         content_layout.addWidget(self.splitter)
         main_layout.addWidget(content_container)
         
@@ -91,6 +91,7 @@ class MainWindow(QMainWindow):
         self.title_bar.tab_widget = self.tab_widget
         
         self.setCentralWidget(main_widget)
+
 
         # Aggiungi la prima tab
         self.add_new_tab()
