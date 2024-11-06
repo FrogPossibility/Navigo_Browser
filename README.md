@@ -1,4 +1,4 @@
-# Quantum Web Browser
+# Navigo Browser
 
 ## 🌐 A Modern, Customizable Web Browser Built with Python and PyQt5
 
