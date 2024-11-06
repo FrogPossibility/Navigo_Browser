@@ -25,7 +25,7 @@ Navigo is a sleek, feature-rich web browser that combines the power of PyQt5 wit
 
 ### Steps
 1. Clone the repository:
- `git clone https://github.com/yourusername/navigo_browser.git cd navigo_browser `
+ `git clone https://github.com/FrogPossibility/Navigo_Browser.git cd Navigo_Browser `
 
 2. Install the required dependencies:
 pip install -r requirements.txt
