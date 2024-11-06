@@ -2,7 +2,7 @@
 
 ## 🌐 A Modern, Customizable Web Browser Built with Python and PyQt5
 
-![Quantum Browser Screenshot](screenshot.png)
+![Quantum Browser Screenshot](screenshot1.png)
 
 Quantum is a sleek, feature-rich web browser that combines the power of PyQt5 with a user-friendly interface. Designed for both casual users and developers, Quantum offers a unique browsing experience with its vertical tab bar and customizable features.
 
