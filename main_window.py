@@ -73,6 +73,8 @@ class MainWindow(QMainWindow):
         self.tab_widget.currentChanged.connect(self.on_tab_changed)
         self.tab_widget.setFixedWidth(200)  # Larghezza fissa per la barra delle tab
 
+        self.tab_widget.tabBar().tabMoved.connect(self.handle_tab_moved)
+
          # Aggiungi questa variabile per memorizzare il percorso di blank.html
         self.blank_html_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'blank.html')
         self.blank_html_url = QUrl.fromLocalFile(self.blank_html_path)
@@ -189,3 +191,9 @@ class MainWindow(QMainWindow):
 
     def set_default_zoom(self, browser):
         browser.setZoomFactor(1.0)  # Puoi regolare questo valore se necessario
+
+    def handle_tab_moved(self, from_index, to_index):
+        # Sposta anche il widget della pagina web
+        widget = self.page_container.widget(from_index)
+        self.page_container.removeWidget(widget)
+        self.page_container.insertWidget(to_index, widget)
