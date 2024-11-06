@@ -79,15 +79,15 @@ class VerticalTabWidget(QTabWidget):
         self.setMinimumWidth(200)  # Imposta una larghezza minima
         self.setStyleSheet("""
             QTabWidget {
-                background-color: #222222;
+                background-color: #1e1e1e;
                 border: none;
             }
             QTabWidget::pane {
                 border: none;
-                background-color: #222222;
+                background-color: #1e1e1e;
             }
             QTabWidget::tab-bar {
                 alignment: left;
-                width: 200px;  /* Larghezza fissa per la barra delle tab */
+                width: 200px;
             }
         """)
