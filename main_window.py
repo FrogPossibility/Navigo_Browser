@@ -5,6 +5,7 @@ from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngi
 from PyQt5.QtGui import QPainterPath, QRegion, QIcon
 from custom_widgets import VerticalTabWidget
 from custom_titlebar import CustomTitleBar
+from mouse_cursor import apply_cursors
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -92,6 +93,8 @@ class MainWindow(QMainWindow):
         
         self.setCentralWidget(main_widget)
         
+        apply_cursors(self)
+
         # Aggiungi la prima tab
         self.add_new_tab()
         
