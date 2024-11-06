@@ -197,3 +197,4 @@ class MainWindow(QMainWindow):
         widget = self.page_container.widget(from_index)
         self.page_container.removeWidget(widget)
         self.page_container.insertWidget(to_index, widget)
+    #wow
