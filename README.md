@@ -1,56 +1,76 @@
-Web Browser Project
-===================
+# Quantum Web Browser
 
-Questo è un progetto di browser web personalizzato sviluppato in Python utilizzando PyQt5.
+## 🌐 A Modern, Customizable Web Browser Built with Python and PyQt5
 
-Caratteristiche principali:
----------------------------
-1. Interfaccia utente moderna con tema scuro
-2. Barra delle schede verticale personalizzata
-3. Barra del titolo personalizzata con controlli di navigazione
-4. Supporto per più schede
-5. Pagina "Nuova scheda" personalizzata
-6. Zoom predefinito personalizzabile
-7. Supporto per diversi motori di ricerca
+![Quantum Browser Screenshot](screenshot.png)
 
-Requisiti:
-----------
+Quantum is a sleek, feature-rich web browser that combines the power of PyQt5 with a user-friendly interface. Designed for both casual users and developers, Quantum offers a unique browsing experience with its vertical tab bar and customizable features.
+
+## ✨ Key Features
+
+- 🎨 Modern, dark-themed user interface
+- 📑 Vertical tab bar for efficient tab management
+- 🧭 Custom title bar with intuitive navigation controls
+- 🖼️ Personalized "New Tab" page
+- 🔍 Support for multiple search engines
+- 🔧 Customizable default zoom level
+- 🚀 Multi-tab support for seamless browsing
+
+## 🛠️ Installation
+
+### Prerequisites
 - Python 3.7+
 - PyQt5
 - PyQtWebEngine
 
-Installazione:
---------------
-1. Assicurati di avere Python installato sul tuo sistema
-2. Installa le dipendenze necessarie eseguendo:
-   pip install PyQt5 PyQtWebEngine
+### Steps
+1. Clone the repository:
+git clone https://github.com/yourusername/quantum-browser.git cd quantum-browser
 
-Esecuzione:
------------
-Per avviare il browser, esegui il file main.py:
+2. Install the required dependencies:
+pip install -r requirements.txt
+
+## 🚀 Usage
+
+Launch Quantum Browser by running:
 python main.py
 
-Struttura del progetto:
------------------------
-- main.py: Script principale per avviare l'applicazione
-- main_window.py: Definizione della finestra principale del browser
-- custom_titlebar.py: Implementazione della barra del titolo personalizzata
-- custom_widgets.py: Widget personalizzati come la barra delle schede verticale
-- styles.py: Definizioni degli stili CSS per i vari componenti
-- blank.html: Pagina HTML per la "Nuova scheda"
-- icons/: Cartella contenente le icone utilizzate nel browser
-- fonts/: Cartella contenente i font personalizzati
+## 🗂️ Project Structure
 
-Personalizzazione:
-------------------
-- Puoi modificare l'aspetto del browser modificando gli stili in styles.py
-- Per cambiare il comportamento della pagina "Nuova scheda", modifica il file blank.html
-- Aggiungi o rimuovi motori di ricerca modificando la variabile searchEngines in blank.html
+- `main.py`: Entry point of the application
+- `main_window.py`: Definition of the main browser window
+- `custom_titlebar.py`: Implementation of the custom title bar
+- `custom_widgets.py`: Custom widgets like the vertical tab bar
+- `styles.py`: CSS style definitions for various components
+- `blank.html`: HTML template for the "New Tab" page
+- `icons/`: Directory containing browser icons
+- `fonts/`: Directory for custom fonts
 
-Contribuire:
-------------
-Sentiti libero di contribuire al progetto aprendo issues o inviando pull requests su GitHub.
+## 🎨 Customization
 
-Licenza:
---------
-Questo progetto è rilasciato sotto la licenza MIT. Vedi il file LICENSE per i dettagli.
+- Modify the browser's appearance by editing `styles.py`
+- Customize the "New Tab" page behavior by updating `blank.html`
+- Add or remove search engines by modifying the `searchEngines` variable in `blank.html`
+
+## 🤝 Contributing
+
+We welcome contributions to Quantum Browser! Feel free to:
+
+- Open issues for bugs or feature requests
+- Submit pull requests for improvements
+- Suggest new ideas or enhancements
+
+Please read our [Contributing Guidelines](CONTRIBUTING.md) before making a contribution.
+
+## 📜 License
+
+Quantum Browser is released under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact
+
+For questions or support, please open an issue or contact the maintainer at:
+quantum.browser@example.com
+
+---
+
+Happy browsing with Quantum! 🚀✨
