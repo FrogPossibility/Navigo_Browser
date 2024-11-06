@@ -25,15 +25,15 @@ Navigo is a sleek, feature-rich web browser that combines the power of PyQt5 wit
 
 ### Steps
 1. Clone the repository:
- `git clone https://github.com/FrogPossibility/Navigo_Browser.git cd Navigo_Browser `
+ `git clone https://github.com/FrogPossibility/Navigo_Browser.git cd Navigo_Browser`
 
 2. Install the required dependencies:
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 ## 🚀 Usage
 
 Launch Navigo Browser by running:
-python main.py
+`python main.py`
 
 ## 🗂️ Project Structure
 
@@ -69,8 +69,8 @@ Quantum Browser is released under the MIT License. See the [LICENSE](LICENSE) fi
 ## 📞 Contact
 
 For questions or support, please open an issue or contact the maintainer at:
-profrogcreator@gmail.com
+`profrogcreator@gmail.com`
 
 ---
 
-Happy browsing with Quantum! 🚀✨
+Happy browsing with Navigo! 🚀✨
