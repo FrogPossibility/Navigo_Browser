@@ -1,12 +1,20 @@
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QPushButton, QLineEdit, QSizePolicy, QSpacerItem
-from PyQt5.QtGui import QIcon
+from PyQt5.QtGui import QIcon, QFontDatabase
 from PyQt5.QtCore import QSize, Qt, QUrl
+
+def load_custom_font():
+    font_id = QFontDatabase.addApplicationFont("fonts/Poppins-Regular.ttf")
+    return QFontDatabase.applicationFontFamilies(font_id)[0] if font_id != -1 else "Arial"
 
 class CustomTitleBar(QWidget):
     def __init__(self, parent, tab_widget):
         super(CustomTitleBar, self).__init__(parent)
         self.parent = parent
         self.tab_widget = tab_widget
+        
+        # Carica il font Poppins
+        self.font_family = load_custom_font()
+
         layout = QHBoxLayout()
         layout.setContentsMargins(10, 5, 10, 5)
         layout.setSpacing(10)
@@ -50,19 +58,19 @@ class CustomTitleBar(QWidget):
         self.url_bar.setPlaceholderText("Search or enter URL")
         self.url_bar.returnPressed.connect(self.navigate_to_url)
         self.url_bar.setFixedHeight(36)
-        self.url_bar.setStyleSheet("""
-            QLineEdit {
+        self.url_bar.setStyleSheet(f"""
+            QLineEdit {{
                 background-color: #2d2d2d;
                 color: #ffffff;
                 padding: 5px 10px;
                 border-radius: 18px;
                 font-size: 16px;
-                font-family: "fonts/Poppins-Regular.ttf"; /* Sostituisci con il nome del font desiderato */
+                font-family: '{self.font_family}';
                 border: 1px solid #3a3a3a;
-            }
-            QLineEdit:focus {
+            }}
+            QLineEdit:focus {{
                 border: 1px solid #4a4a4a;
-            }
+            }}
         """)
         layout.addWidget(self.url_bar, 1)
 

@@ -1,18 +1,20 @@
 from PyQt5.QtWidgets import QTabBar, QTabWidget, QStylePainter, QStyleOptionTab
 from PyQt5.QtCore import QSize, QRect, QRectF, Qt
-from PyQt5.QtGui import QPainterPath, QColor
+from PyQt5.QtGui import QPainterPath, QColor, QFontDatabase, QFont
 from styles import VERTICAL_TAB_BAR_STYLE, VERTICAL_TAB_WIDGET_STYLE
+from custom_titlebar import load_custom_font
 
 class VerticalTabBar(QTabBar):
     def __init__(self, parent=None):
         super(VerticalTabBar, self).__init__(parent)
-        self.setMinimumWidth(200)  # Impostiamo una larghezza minima fissa
-        self.setExpanding(True)    # Permettiamo alle tab di espandersi
-        self.setStyleSheet("""
-            QTabBar {
+        self.font_family = load_custom_font()
+        self.setMinimumWidth(200)
+        self.setExpanding(True)
+        self.setStyleSheet(f"""
+            QTabBar {{
                 background-color: #222222;
-            }
-            QTabBar::tab {
+            }}
+            QTabBar::tab {{
                 height: 50px;
                 width: 200px;
                 margin: 5px;
@@ -20,19 +22,20 @@ class VerticalTabBar(QTabBar):
                 background-color: #333333;
                 text-align: left;
                 padding: 5px;
-            }
-            QTabBar::tab:selected {
+                font-family: '{self.font_family}';
+            }}
+            QTabBar::tab:selected {{
                 background-color: #444444;
-            }
-            QTabBar::close-button {
+            }}
+            QTabBar::close-button {{
                 image: url(icons/closeTab.svg);
                 width: 20px;
                 height: 20px;
-            }
-            QTabBar::close-button:hover {
+            }}
+            QTabBar::close-button:hover {{
                 background-color: #555555;
                 border-radius: 8px;
-            }
+            }}
         """)
 
     def tabSizeHint(self, index):
@@ -56,10 +59,11 @@ class VerticalTabBar(QTabBar):
                 icon_rect = QRect(tab_rect.left() + 5, tab_rect.top() + 15, 20, 20)
                 self.tabIcon(index).paint(painter, icon_rect)
             
-            # Testo
+            # Testo con il nuovo font
             text = self.tabText(index)
             text_rect = QRect(tab_rect.left() + 30, tab_rect.top(), tab_rect.width() - 60, tab_rect.height())
             painter.setPen(Qt.white)
+            painter.setFont(QFont(self.font_family))  # Imposta il font per il testo
             painter.drawText(text_rect, Qt.AlignVCenter | Qt.AlignLeft, text)
             
             # Pulsante di chiusura
