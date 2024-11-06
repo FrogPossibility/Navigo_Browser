@@ -56,7 +56,8 @@ class CustomTitleBar(QWidget):
                 color: #ffffff;
                 padding: 5px 10px;
                 border-radius: 18px;
-                font-size: 14px;
+                font-size: 16px;
+                font-family: "fonts/Poppins-Regular.ttf"; /* Sostituisci con il nome del font desiderato */
                 border: 1px solid #3a3a3a;
             }
             QLineEdit:focus {
