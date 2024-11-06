@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>New Tab</title>
+    <style>
+        body {
+            background-color: #222222;
+            background-size: cover;
+            background-position: center;
+            color: #FFFFFF;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            position: relative;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+        .search-box {
+            padding: 12px;
+            font-size: 1.5em;
+            width: 500px;
+            border-radius: 15px;
+            border: none;
+            background-color: rgba(51, 51, 51, 0.7); /* Trasparente */
+            color: #FFFFFF;
+            margin-bottom: 2px;
+            backdrop-filter: blur(5px); /* Effetto blur */
+            transition: box-shadow 0.3s ease;
+        }
+                
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 0 20px #000000d7; /* Colore del box-shadow al focus */
+        }
+
+        .search-container {
+            display: flex; /* Usa flexbox per allineare gli elementi */
+            align-items: center; /* Allinea verticalmente al centro */
+        }
+
+
+        .engine-icon {
+            width: 100%; /* L'icona riempie il contenitore */
+            height: auto; /* Mantiene le proporzioni */
+        }
+        .engine-options {
+            display: none;
+            position: absolute;
+            right: 0px;
+            top: 103%;
+            background-color: #33333390;
+            border-radius: 10px;
+            padding: 3px;
+            backdrop-filter: blur(5px); /* Effetto blur */
+        }
+        .engine-option {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .settings {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        .settings input {
+            margin: 5px;
+            padding: 5px;
+            background-color: #333333;
+            color: #FFFFFF;
+            border: 1px solid #FFFFFF;
+            border-radius: 3px;
+        }
+
+        .sidebar-toggle {
+            position: fixed;
+            left: 10px;
+            top: 10px;
+            cursor: pointer;
+            padding: 10px;
+            background-color: #333333b0;
+            border-radius: 30%;
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .sidebar {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 300px;
+            height: 100vh;
+            background-color: #33333381;
+            transition: 0.5s;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            z-index: 999;
+            backdrop-filter: blur(5px);
+        }
+
+        .sidebar.open {
+            left: 0;
+        }
+
+        .background-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 60px;
+        }
+
+        .background-option {
+            width: 100%;
+            height: 100px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .background-option:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px rgba(255,255,255,0.3);
+        }
+
+        .material-icons {
+            color: white;
+            font-size: 24px;
+        }
+
+        .engine-icon-container {
+            display: inline-flex; /* Usa flexbox per centrare l'icona */
+            justify-content: center; /* Centra orizzontalmente l'icona */
+            align-items: center; /* Centra verticalmente l'icona */
+            width: 40px; /* Larghezza del quadrato */
+            height: 40px; /* Altezza del quadrato */
+            border-radius: 15px; /* Raggio del bordo per angoli arrotondati */
+            background-color: rgba(51, 51, 51, 0.7); /* Colore di sfondo trasparente */
+            backdrop-filter: blur(2px); /* Effetto blur */
+            padding: 5px; /* Padding interno */
+            cursor: pointer; /* Cambia il cursore quando si passa sopra */
+            margin-left: 7px; /* Spaziatura a sinistra */
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9); /* Colore del testo bianco con un po' di trasparenza */
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Ombra per migliorare la leggibilità */
+        }
+
+
+    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        let currentSearchEngine = 'google';
+        const searchEngines = {
+            'google': 'https://www.google.com/search?q=',
+            'bing': 'https://www.bing.com/search?q=',
+            'duckduckgo': 'https://duckduckgo.com/?q=',
+            'ecosia': 'https://www.ecosia.org/search?method=index&q='
+        };
+
+        function handleSearch(event) {
+            if (event.key === 'Enter') {
+                let searchText = event.target.value.trim();
+                if (searchText !== '') {
+                    if (!searchText.startsWith('http://') && !searchText.startsWith('https://')) {
+                        searchText = searchEngines[currentSearchEngine] + encodeURIComponent(searchText);
+                    }
+                    window.location.href = searchText;
+                }
+            }
+ }
+
+        function changeSearchEngine(engine) {
+            currentSearchEngine = engine;
+            localStorage.setItem('searchEngine', engine);
+            updateEngineIcon();
+            toggleEngineOptions();
+        }
+
+        function updateEngineIcon() {
+            document.getElementById('currentEngineIcon').src = `icons/searchEngines/${currentSearchEngine}.svg`;
+        }
+
+        function toggleEngineOptions() {
+            const options = document.getElementById('engineOptions');
+            options.style.display = options.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function changeBackground() {
+            const bgUrl = document.getElementById('bgUrl').value;
+            document.body.style.backgroundImage = `url('${bgUrl}')`;
+            localStorage.setItem('background', bgUrl);
+        }
+
+        function loadSettings() {
+            const savedEngine = localStorage.getItem('searchEngine');
+            if (savedEngine) {
+                currentSearchEngine = savedEngine;
+                updateEngineIcon();
+            }
+
+            const savedBg = localStorage.getItem('background');
+            if (savedBg) {
+                document.body.style.backgroundImage = `url('${savedBg}')`;
+                document.getElementById('bgUrl').value = savedBg;
+            }
+        }
+
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('open');
+        }
+
+        function setBackground(url) {
+            document.body.style.backgroundImage = `url('${url}')`;
+            localStorage.setItem('background', url);
+        }
+
+        const backgrounds = [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDV8fG1vdW50YWluJTIwbGFnfGVufDB8fHx8MTY4MjI3MDE5Ng&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIyfHxhdXJvcmF8ZW58MHx8fHwxNjgyMjcwMTk2&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1497449493050-aad1e7cad165?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGZvcmVzdGF8ZW58MHx8fHwxNjgyMjcwMTk4&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDE0fHx0cmFtb250JTIwaW4lMjBtb3VudGFpb258ZW58MHx8fHwxNjgyMjcwMTk5&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDE2fHxzdW5saXdoYXxlbnwwfHx8fDE2ODIyNzAyMDA&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHxwcmF0byUyMHZlcmRlfGVufDB8fHx8MTY4MjI3MDIwMQ&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b? crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIwfHxjb3ZlciUyMG1vdW50YWluZXxlbnwwfHx8fDE2ODIyNzAyMDM&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1495344517868-8ebaf0a2044a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHNwYWdpYWdlJTIwdHJvcGljYWxlfGVufDB8fHx8MTY4MjI3MDIwNQ&ixlib=rb-4.0.3&q=80&w=1800',
+
+            'https://images.unsplash.com/photo-1501854140801-50d01698950b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdW50YWluJTIwbGFrZXxlbnwwfHx8fDE2ODIyNzExMjA&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1464278533981-50106e6176b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDN8fG5vcnRoZXJuJTIwbGlnaHRzfGVufDB8fHx8MTY4MjI3MTEyMQ&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHJhaW5mb3Jlc3R8ZW58MHx8fHwxNjgyMjcxMTIy&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdW50YWluJTIwc3Vuc2V0fGVufDB8fHx8MTY4MjI3MTEyMw&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGZvcmVzdCUyMHN1bnxlbnwwfHx8fDE2ODIyNzExMjQ&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdW50YWluJTIwdmFsbGV5fGVufDB8fHx8MTY4MjI3MTEyNQ&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1439853949127-fa647821eba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdW50YWluJTIwcGVha3xlbnwwfHx8fDE2ODIyNzExMjY&ixlib=rb-4.0.3&q=80&w=1800',
+            'https://images.unsplash.com/photo-1505144808419-1957a94ca61e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fHRyb3BpY2FsJTIwYmVhY2h8ZW58MHx8fHwxNjgyMjcxMTI3&ixlib=rb-4.0.3&q=80&w=1800',
+        ];
+
+        function createBackgroundOptions() {
+            const grid = document.querySelector('.background-grid');
+            backgrounds.forEach(bg => {
+                const option = document.createElement('div');
+                option.className = 'background-option';
+                option.style.backgroundImage = `url('${bg}')`;
+                option.onclick = () => setBackground(bg);
+                grid.appendChild(option);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchBox = document.querySelector('.search-box');
+            searchBox.addEventListener('keypress', handleSearch);
+            searchBox.focus();
+            loadSettings();
+            createBackgroundOptions();
+        });
+    </script>
+</head>
+<body>
+    <div class="sidebar-toggle" onclick="toggleSidebar()">
+        <span class="material-icons">wallpaper</span>
+    </div>
+
+    <div class="sidebar">
+        <h2 style="color: white; text-align: center;">Backgrounds</h2>
+        <div class="background-grid"></div>
+    </div>
+
+    <div class="settings">
+        <input type="text" id="bgUrl" placeholder="Background URL">
+        <button onclick="changeBackground()">Set Background</button>
+    </div>
+    <div class="container">
+        <h1>New Tab</h1>
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="Search or enter URL" autofocus>
+            <div class="engine-icon-container" onclick="toggleEngineOptions()">
+                <img id="currentEngineIcon" class="engine-icon" src="icons/searchEngines/google.svg">
+            </div>
+            <div id="engineOptions" class="engine-options">
+                <img class="engine-option" src="icons/searchEngines/google.svg" onclick="changeSearchEngine('google')">
+                <img class="engine-option" src="icons/searchEngines/bing.svg" onclick="changeSearchEngine('bing')">
+                <img class="engine-option" src="icons/searchEngines/duckduckgo.svg" onclick="changeSearchEngine('duckduckgo')">
+                <img class="engine-option" src="icons/searchEngines/ecosia.svg" onclick="changeSearchEngine('ecosia')">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
