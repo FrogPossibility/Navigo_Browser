@@ -99,7 +99,6 @@ class MainWindow(QMainWindow):
         self.apply_rounded_corners()
 
 
-
     def add_new_tab(self, url=None):
         browser = QWebEngineView()
 
