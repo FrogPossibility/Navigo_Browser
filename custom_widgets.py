@@ -8,7 +8,7 @@ class VerticalTabBar(QTabBar):
     def __init__(self, parent=None):
         super(VerticalTabBar, self).__init__(parent)
         self.font_family = load_custom_font()
-        self.setMinimumWidth(200)
+        self.setMinimumWidth(100)  # Modifica questa linea
         self.setExpanding(True)
         self.setStyleSheet(f"""
             QTabBar {{
@@ -39,7 +39,8 @@ class VerticalTabBar(QTabBar):
         """)
 
     def tabSizeHint(self, index):
-        return QSize(200, 50)  # Dimensione fissa per ogni tab
+        width = max(100, self.width())  # Assicura una larghezza minima di 100px
+        return QSize(width, 50)
 
     def paintEvent(self, event):
         painter = QStylePainter(self)
@@ -80,7 +81,8 @@ class VerticalTabWidget(QTabWidget):
         self.setTabPosition(QTabWidget.West)
         self.setTabsClosable(True)
         self.setMovable(True)
-        self.setMinimumWidth(200)  # Imposta una larghezza minima
+        self.setMinimumWidth(100)
+        self.setMaximumWidth(200)
         self.setStyleSheet("""
             QTabWidget {
                 background-color: #1e1e1e;

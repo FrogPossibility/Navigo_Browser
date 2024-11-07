@@ -1,5 +1,5 @@
 import os
-from PyQt5.QtCore import Qt, QUrl, QRectF, QObject, QEvent
+from PyQt5.QtCore import Qt, QUrl, QRectF, QObject, QEvent, QTimer
 from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QStackedWidget, QPushButton, QLineEdit
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngineSettings
 from PyQt5.QtGui import QPainterPath, QRegion, QIcon
@@ -10,6 +10,7 @@ from custom_titlebar import CustomTitleBar
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
+        
         profile = QWebEngineProfile.defaultProfile()
         profile.setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
         
@@ -66,12 +67,13 @@ class MainWindow(QMainWindow):
                 background-color: #666666;
             }
         """)
-        
+
         # Crea il widget delle tab
         self.tab_widget = VerticalTabWidget()
         self.tab_widget.tabCloseRequested.connect(self.close_tab)
         self.tab_widget.currentChanged.connect(self.on_tab_changed)
-        self.tab_widget.setFixedWidth(200)  # Larghezza fissa per la barra delle tab
+        self.tab_widget.setMinimumWidth(100)
+        self.tab_widget.setMaximumWidth(200)
 
         self.tab_widget.tabBar().tabMoved.connect(self.handle_tab_moved)
 
@@ -82,13 +84,21 @@ class MainWindow(QMainWindow):
         # Container per il contenuto della pagina
         self.page_container = QStackedWidget()
         self.page_container.setMinimumWidth(400)
+    
         
         # Aggiungi i widget al splitter
         self.splitter.addWidget(self.tab_widget)
         self.splitter.addWidget(self.page_container)
-        
+
+        # Collega il segnale splitterMoved
+        self.splitter.splitterMoved.connect(self.handle_splitter_moved)
+
+        QTimer.singleShot(100, self.set_initial_splitter_sizes)
         # Imposta le proporzioni iniziali
         self.splitter.setSizes([200, self.width() - 200])
+    
+        
+        self.splitter.setCollapsible(0, False)
 
         
         content_layout.addWidget(self.splitter)
@@ -182,12 +192,17 @@ class MainWindow(QMainWindow):
         self.apply_rounded_corners()
         super(MainWindow, self).resizeEvent(event)
 
+    def set_initial_splitter_sizes(self):
+        total_width = self.width()
+        self.splitter.setSizes([200, total_width - 200])
+
     def handle_splitter_moved(self, pos, index):
-        # Assicurati che la larghezza del tab_container rimanga entro i limiti
-        if pos < 50:
-            self.splitter.setSizes([50, self.width() - 50])
-        elif pos > 200:
-            self.splitter.setSizes([200, self.width() - 200])
+        sizes = self.splitter.sizes()
+        if sizes[0] < 100:
+            self.splitter.setSizes([100, sizes[1] + (sizes[0] - 100)])
+        elif sizes[0] > 200:
+            self.splitter.setSizes([200, sizes[1] + (sizes[0] - 200)])
+
 
     def set_default_zoom(self, browser):
         browser.setZoomFactor(1.0)  # Puoi regolare questo valore se necessario
