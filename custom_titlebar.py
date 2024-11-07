@@ -3,7 +3,7 @@ from PyQt5.QtGui import QIcon, QFontDatabase
 from PyQt5.QtCore import QSize, Qt, QUrl
 
 def load_custom_font():
-    font_id = QFontDatabase.addApplicationFont("fonts/Poppins-Regular.ttf")
+    font_id = QFontDatabase.addApplicationFont("fonts/Poppins-SemiBold.ttf")
     return QFontDatabase.applicationFontFamilies(font_id)[0] if font_id != -1 else "Arial"
 
 class CustomTitleBar(QWidget):
