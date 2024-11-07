@@ -72,7 +72,7 @@ class MainWindow(QMainWindow):
         self.tab_widget = VerticalTabWidget()
         self.tab_widget.tabCloseRequested.connect(self.close_tab)
         self.tab_widget.currentChanged.connect(self.on_tab_changed)
-        self.tab_widget.setMinimumWidth(100)
+        self.tab_widget.setMinimumWidth(50)
         self.tab_widget.setMaximumWidth(200)
 
         self.tab_widget.tabBar().tabMoved.connect(self.handle_tab_moved)
@@ -93,7 +93,7 @@ class MainWindow(QMainWindow):
         # Collega il segnale splitterMoved
         self.splitter.splitterMoved.connect(self.handle_splitter_moved)
 
-        QTimer.singleShot(100, self.set_initial_splitter_sizes)
+        QTimer.singleShot(50, self.set_initial_splitter_sizes)
         # Imposta le proporzioni iniziali
         self.splitter.setSizes([200, self.width() - 200])
     
@@ -198,8 +198,8 @@ class MainWindow(QMainWindow):
 
     def handle_splitter_moved(self, pos, index):
         sizes = self.splitter.sizes()
-        if sizes[0] < 100:
-            self.splitter.setSizes([100, sizes[1] + (sizes[0] - 100)])
+        if sizes[0] < 50:
+            self.splitter.setSizes([50, sizes[1] + (sizes[0] - 50)])
         elif sizes[0] > 200:
             self.splitter.setSizes([200, sizes[1] + (sizes[0] - 200)])
 
