@@ -72,9 +72,16 @@ We welcome contributions to Navigo Browser! Feel free to:
 
 Please read our [Contributing Guidelines](CONTRIBUTING.md) before making a contribution.
 
+
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=FrogPossibility/Navigo_Browser&type=Date)](https://star-history.com/#FrogPossibility/Navigo_Browser&Date)
+<a href="https://star-history.com/#FrogPossibility/Navigo_Browser&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=FrogPossibility/Navigo_Browser&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=FrogPossibility/Navigo_Browser&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=FrogPossibility/Navigo_Browser&type=Date" />
+ </picture>
+</a>
 
 ## 📜 License
 
