@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QTabBar, QTabWidget, QStylePainter, QStyleOptionTab
 from PyQt5.QtCore import QSize, QRect, QRectF, Qt
-from PyQt5.QtGui import QPainterPath, QColor, QFontDatabase, QFont
+from PyQt5.QtGui import QPainterPath, QColor, QFont
 from styles import VERTICAL_TAB_BAR_STYLE, VERTICAL_TAB_WIDGET_STYLE
 from custom_titlebar import load_custom_font
 

@@ -1,7 +1,6 @@
 import sys
-import os
-from PyQt5.QtWidgets import QApplication, QMainWindow
-from PyQt5.QtGui import QPalette, QColor, QCursor, QPixmap
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtGui import QPalette, QColor
 from PyQt5.QtCore import Qt
 from main_window import MainWindow
 

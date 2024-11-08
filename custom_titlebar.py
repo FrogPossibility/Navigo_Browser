@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QHBoxLayout, QPushButton, QLineEdit, QSizePolicy, QSpacerItem
 from PyQt5.QtGui import QIcon, QFontDatabase
-from PyQt5.QtCore import QSize, Qt, QUrl
+from PyQt5.QtCore import QSize, QUrl
 
 def load_custom_font():
     font_id = QFontDatabase.addApplicationFont("fonts/Poppins-SemiBold.ttf")

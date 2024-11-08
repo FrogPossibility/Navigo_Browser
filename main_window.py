@@ -1,5 +1,5 @@
 import os
-from PyQt5.QtCore import Qt, QUrl, QRectF, QObject, QEvent, QTimer
+from PyQt5.QtCore import Qt, QUrl, QRectF, QTimer
 from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QStackedWidget, QPushButton, QLineEdit
 from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngineSettings
 from PyQt5.QtGui import QPainterPath, QRegion, QIcon
