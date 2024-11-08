@@ -5,11 +5,8 @@
 ## Clean GUI
 ![](https://github.com/FrogPossibility/Navigo_Browser/blob/master/.github/gif1.gif)
 
-![Navigo Browser Screenshot](.github/screen1.png)
-
 ## Extendable and collapsible tab bar
-
-![Navigo Browser Screenshot](.github/screen2.png)
+![](https://github.com/FrogPossibility/Navigo_Browser/blob/master/.github/gif2.gif)
 
 Navigo is a sleek, feature-rich web browser that combines the power of PyQt5 with a user-friendly interface. Designed for both casual users and developers, Navigo offers a unique browsing experience with its vertical tab bar and customizable features.
 
