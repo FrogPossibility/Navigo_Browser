@@ -1,6 +1,6 @@
 # Navigo Browser
 
-## 🌐 A Modern, Customizable Web Browser Built with Python and PyQt5
+### 🌐 A Modern, Customizable Web Browser Built with Python and PyQt5
 
 ## Clean GUI and all the search engines you want
 ![](https://github.com/FrogPossibility/Navigo_Browser/blob/master/.github/gif2.gif)
