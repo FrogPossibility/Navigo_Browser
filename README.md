@@ -3,6 +3,7 @@
 ## 🌐 A Modern, Customizable Web Browser Built with Python and PyQt5
 
 ## Clean GUI
+![](https://github.com/FrogPossibility/Navigo_Browser/blob/master/.github/gif1.gif)
 
 ![Navigo Browser Screenshot](.github/screen1.png)
 
