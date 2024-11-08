@@ -72,6 +72,8 @@ We welcome contributions to Navigo Browser! Feel free to:
 
 Please read our [Contributing Guidelines](CONTRIBUTING.md) before making a contribution.
 
+<iframe style="width:100%;height:auto;min-width:600px;min-height:400px;" src="https://star-history.com/embed?secret=#FrogPossibility/Navigo_Browser&Date" frameBorder="0"></iframe>
+
 ## 📜 License
 
 Quantum Browser is released under the MIT License. See the [LICENSE](LICENSE) file for details.
