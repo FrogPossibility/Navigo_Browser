@@ -1,11 +1,12 @@
 import sys
 import os
-import gc
+import sys
 import logging
 from PyQt5.QtWidgets import QApplication
 from PyQt5.QtGui import QPalette, QColor
 from PyQt5.QtCore import Qt, QTimer
 from main_window import MainWindow
+import gc
 
 class PerformanceOptimizedApp(QApplication):
     def __init__(self, argv):
@@ -74,10 +75,25 @@ def configure_dark_theme(app):
 
 def main():
     """Punto di ingresso principale dell'applicazione"""
+
+
     try:
         # Configurazione logging
         setup_logging()
         logging.info("Avvio Navigo Browser")
+
+         # Crea cartella logs se non esiste
+        os.makedirs('logs', exist_ok=True)
+
+        # Configurazione logging
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+            handlers=[
+                logging.FileHandler('logs/navigo_browser.log'),
+                logging.StreamHandler()
+            ]
+        )
 
         # Creazione applicazione ottimizzata
         app = PerformanceOptimizedApp(sys.argv)

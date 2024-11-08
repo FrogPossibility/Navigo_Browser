@@ -8,6 +8,7 @@ from custom_titlebar import CustomTitleBar
 
 from performance_monitor import PerformanceMonitor
 from resource_optimizer import ResourceOptimizer, ResourceInterceptor
+import logging
 
 
 
@@ -31,18 +32,19 @@ class MainWindow(QMainWindow):
         settings.setAttribute(QWebEngineSettings.Accelerated2dCanvasEnabled, True)
 
         # Inizializza monitor prestazioni
-        self.performance_monitor = PerformanceMonitor()
+        self.performance_monitor = PerformanceMonitor(self)
         self.performance_monitor.set_main_window(self)
+        
+        # Avvia monitoraggio
+        self.performance_monitor.start_monitoring()
         
         # Ottimizza motore web
         self.web_profile = ResourceOptimizer.optimize_web_engine()
-        self.performance_monitor.set_web_profile(self.web_profile)
+        self.performance_monitor.set_main_window(self.web_profile)
         
         # Interceptor risorse
         self.resource_interceptor = ResourceInterceptor()
         
-        # Avvia monitoraggio
-        self.performance_monitor.start_monitoring()
         
         # Timer per ottimizzazioni periodiche
         self.optimization_timer = QTimer()
@@ -264,3 +266,13 @@ class MainWindow(QMainWindow):
     def periodic_optimization(self):
         """Esegui ottimizzazioni periodiche"""
         self.performance_monitor._take_performance_action()
+
+    def closeEvent(self, event):
+        """Gestisci chiusura finestra"""
+        try:
+            # Ferma monitoraggio prestazioni
+            self.performance_monitor.stop_monitoring()
+            event.accept()
+        except Exception as e:
+            logging.error(f"Error during window close: {e}")
+            event.accept()
