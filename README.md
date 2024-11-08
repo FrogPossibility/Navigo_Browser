@@ -2,6 +2,8 @@
 
 ## 🌐 A Modern, Customizable Web Browser Built with Python and PyQt5
 
+## Customizable
+
 ![Navigo Browser Screenshot](screenshot1)
 
 Navigo is a sleek, feature-rich web browser that combines the power of PyQt5 with a user-friendly interface. Designed for both casual users and developers, Navigo offers a unique browsing experience with its vertical tab bar and customizable features.
