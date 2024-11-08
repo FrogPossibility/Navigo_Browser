@@ -2,7 +2,7 @@
 
 ### 🌐 A Modern, Customizable Web Browser Built with Python and PyQt5
 
-## Clean GUI
+## Clean GUI and all the search engines you want
 ![](https://github.com/FrogPossibility/Navigo_Browser/blob/master/.github/screen1.png)
 
 ## Extendable and collapsible tab bar
