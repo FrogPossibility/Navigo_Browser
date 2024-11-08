@@ -11,7 +11,7 @@ if __name__ == "__main__":
 
     # Imposta il tema scuro
     palette = QPalette()
-    palette.setColor(QPalette.Window, QColor("#222222"))
+    palette.setColor(QPalette.Window, QColor("#222222")) #222222
     palette.setColor(QPalette.WindowText, QColor("#FFFFFF"))
     palette.setColor(QPalette.Base, QColor("#333333"))
     palette.setColor(QPalette.AlternateBase, QColor("#444444"))

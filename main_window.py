@@ -177,7 +177,7 @@ class MainWindow(QMainWindow):
 
     def update_tab_title(self, index, title):
         if index >= 0:
-            truncated_title = (title[:10] + '...') if len(title) > 20 else title
+            truncated_title = (title[:15] + '...') if len(title) > 20 else title
             self.tab_widget.setTabText(index, truncated_title)
 
 
@@ -212,4 +212,3 @@ class MainWindow(QMainWindow):
         widget = self.page_container.widget(from_index)
         self.page_container.removeWidget(widget)
         self.page_container.insertWidget(to_index, widget)
-    #wow
