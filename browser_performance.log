@@ -1,0 +1,3 @@
+2024-11-08 17:54:17,615 - WARNING: High Memory Usage: 92.8%
+2024-11-08 17:54:17,615 - INFO: Performance monitoring started
+2024-11-08 17:54:17,630 - ERROR: Performance mitigation error: 'MainWindow' object has no attribute 'tab_widget'

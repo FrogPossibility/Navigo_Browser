@@ -6,6 +6,10 @@ from PyQt5.QtGui import QPainterPath, QRegion, QIcon
 from custom_widgets import VerticalTabWidget
 from custom_titlebar import CustomTitleBar
 
+from performance_monitor import PerformanceMonitor
+from resource_optimizer import ResourceOptimizer, ResourceInterceptor
+
+
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -25,6 +29,26 @@ class MainWindow(QMainWindow):
         settings.setAttribute(QWebEngineSettings.ErrorPageEnabled, True)
         settings.setAttribute(QWebEngineSettings.WebGLEnabled, True)
         settings.setAttribute(QWebEngineSettings.Accelerated2dCanvasEnabled, True)
+
+        # Inizializza monitor prestazioni
+        self.performance_monitor = PerformanceMonitor()
+        self.performance_monitor.set_main_window(self)
+        
+        # Ottimizza motore web
+        self.web_profile = ResourceOptimizer.optimize_web_engine()
+        self.performance_monitor.set_web_profile(self.web_profile)
+        
+        # Interceptor risorse
+        self.resource_interceptor = ResourceInterceptor()
+        
+        # Avvia monitoraggio
+        self.performance_monitor.start_monitoring()
+        
+        # Timer per ottimizzazioni periodiche
+        self.optimization_timer = QTimer()
+        self.optimization_timer.timeout.connect(self.periodic_optimization)
+        self.optimization_timer.start(300000)  # Ogni 5 minuti
+
 
         
 
@@ -121,6 +145,9 @@ class MainWindow(QMainWindow):
         browser = QWebEngineView()
 
         self.set_default_zoom(browser)
+
+        # Ottimizza caricamento risorse per ogni tab
+        ResourceOptimizer.setup_lazy_loading(browser)
         
         # Modifica questa parte per gestire le nuove tab
         if url is None or url == '' or url == 'about:blank':
@@ -130,6 +157,11 @@ class MainWindow(QMainWindow):
 
         # Aggiungi questo handler per gestire i cambi di URL
         browser.urlChanged.connect(lambda qurl, b=browser: self.handle_url_change(b, qurl))
+
+        # Implementa interceptor
+        browser.page().urlChanged.connect(
+            lambda url: self.check_resource_loading(url, browser)
+        )
 
         index = self.page_container.addWidget(browser)
         
@@ -212,3 +244,23 @@ class MainWindow(QMainWindow):
         widget = self.page_container.widget(from_index)
         self.page_container.removeWidget(widget)
         self.page_container.insertWidget(to_index, widget)
+
+    def check_resource_loading(self, url, browser):
+        """Verifica e blocca risorse non necessarie"""
+        url_str = url.toString()
+        if self.resource_interceptor.should_block_request(url_str):
+            browser.page().runJavaScript(f"""
+                console.log('Blocked resource: {url_str}');
+            """)
+
+    def close_inactive_tabs(self):
+        """Chiude tab inattive per risparmiare risorse"""
+        for index in range(self.tab_widget.count()):
+            browser = self.page_container.widget(index)
+            # Logica per determinare tab inattive
+            if not browser.hasFocus() and browser.url().toString() == 'about:blank': self.tab_widget.removeTab(index)
+            browser.deleteLater()
+
+    def periodic_optimization(self):
+        """Esegui ottimizzazioni periodiche"""
+        self.performance_monitor._take_performance_action()
