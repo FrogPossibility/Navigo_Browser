@@ -241,7 +241,7 @@
             localStorage.setItem('background', url);
         }
 
-        const backgrounds = [
+        const backgroundsFull = [
             'https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDV8fG1vdW50YWluJTIwbGFnfGVufDB8fHx8MTY4MjI3MDE5Ng&ixlib=rb-4.0.3&q=80&w=1800',
             'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIyfHxhdXJvcmF8ZW58MHx8fHwxNjgyMjcwMTk2&ixlib=rb-4.0.3&q=80&w=1800',
             'https://images.unsplash.com/photo-1497449493050-aad1e7cad165?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGZvcmVzdGF8ZW58MHx8fHwxNjgyMjcwMTk4&ixlib=rb-4.0.3&q=80&w=1800',
@@ -261,13 +261,33 @@
             'https://images.unsplash.com/photo-1505144808419-1957a94ca61e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fHRyb3BpY2FsJTIwYmVhY2h8ZW58MHx8fHwxNjgyMjcxMTI3&ixlib=rb-4.0.3&q=80&w=1800',
         ];
 
+        const backgrounds = [
+            'https://images.unsplash.com/photo-1506744038136-46273834b3fb?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDV8fG1vdW50YWluJTIwbGFnfGVufDB8fHx8MTY4MjI3MDE5Ng&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1511884642898-4c92249e20b6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIyfHxhdXJvcmF8ZW58MHx8fHwxNjgyMjcwMTk2&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1497449493050-aad1e7cad165?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGZvcmVzdGF8ZW58MHx8fHwxNjgyMjcwMTk4&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDE0fHx0cmFtb250JTIwaW4lMjBtb3VudGFpb258ZW58MHx8fHwxNjgyMjcwMTk5&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDE2fHxzdW5saXdoYXxlbnwwfHx8fDE2ODIyNzAyMDA&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1472214103451-9374bd1c798e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHxwcmF0byUyMHZlcmRlfGVufDB8fHx8MTY4MjI3MDIwMQ&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b? crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDIwfHxjb3ZlciUyMG1vdW50YWluZXxlbnwwfHx8fDE2ODIyNzAyMDM&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1495344517868-8ebaf0a2044a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHNwYWdpYWdlJTIwdHJvcGljYWxlfGVufDB8fHx8MTY4MjI3MDIwNQ&ixlib=rb-4.0.3&q=80&w=300',
+
+            'https://images.unsplash.com/photo-1501854140801-50d01698950b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdW50YWluJTIwbGFrZXxlbnwwfHx8fDE2ODIyNzExMjA&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1464278533981-50106e6176b1?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDN8fG5vcnRoZXJuJTIwbGlnaHRzfGVufDB8fHx8MTY4MjI3MTEyMQ&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDJ8fHJhaW5mb3Jlc3R8ZW58MHx8fHwxNjgyMjcxMTIy&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1519681393784-d120267933ba?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdW50YWluJTIwc3Vuc2V0fGVufDB8fHx8MTY4MjI3MTEyMw&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1426604966848-d7adac402bff?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fGZvcmVzdCUyMHN1bnxlbnwwfHx8fDE2ODIyNzExMjQ&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdW50YWluJTIwdmFsbGV5fGVufDB8fHx8MTY4MjI3MTEyNQ&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1439853949127-fa647821eba0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fG1vdW50YWluJTIwcGVha3xlbnwwfHx8fDE2ODIyNzExMjY&ixlib=rb-4.0.3&q=80&w=300',
+            'https://images.unsplash.com/photo-1505144808419-1957a94ca61e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDF8fHRyb3BpY2FsJTIwYmVhY2h8ZW58MHx8fHwxNjgyMjcxMTI3&ixlib=rb-4.0.3&q=80&w=300',
+        ];
+
         function createBackgroundOptions() {
             const grid = document.querySelector('.background-grid');
-            backgrounds.forEach(bg => {
+            backgrounds.forEach((bg, index) => {
                 const option = document.createElement('div');
                 option.className = 'background-option';
                 option.style.backgroundImage = `url('${bg}')`;
-                option.onclick = () => setBackground(bg);
+                option.onclick = () => setBackground(backgroundsFull[index]);
                 grid.appendChild(option);
             });
         }
