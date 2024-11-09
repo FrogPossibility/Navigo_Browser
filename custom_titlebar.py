@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QWidget, QHBoxLayout, QPushButton, QLineEdit, QSizePolicy, QSpacerItem
-from PyQt5.QtGui import QIcon, QFontDatabase
-from PyQt5.QtCore import QSize, QUrl
+from PyQt6.QtWidgets import QWidget, QHBoxLayout, QPushButton, QLineEdit, QSizePolicy, QSpacerItem
+from PyQt6.QtGui import QIcon, QFontDatabase
+from PyQt6.QtCore import QSize, QUrl
 
 def load_custom_font():
     font_id = QFontDatabase.addApplicationFont("fonts/Poppins-SemiBold.ttf")
@@ -52,7 +52,7 @@ class CustomTitleBar(QWidget):
         self.btn_new_tab.setIconSize(QSize(icon_size, icon_size))
         layout.addWidget(self.btn_new_tab)
 
-        layout.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+        layout.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))
 
         self.url_bar = QLineEdit()
         self.url_bar.setPlaceholderText("Search or enter URL")
@@ -74,7 +74,7 @@ class CustomTitleBar(QWidget):
         """)
         layout.addWidget(self.url_bar, 1)
 
-        layout.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum))
+        layout.addSpacerItem(QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum))  # Modifica qui
 
         self.btn_min = QPushButton(QIcon('icons/topbar/min.svg'), '')
         self.btn_min.clicked.connect(self.parent.showMinimized)

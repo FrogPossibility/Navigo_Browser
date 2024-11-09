@@ -2,22 +2,22 @@ import sys
 import os
 import sys
 import logging
-from PyQt5.QtWidgets import QApplication
-from PyQt5.QtGui import QPalette, QColor
-from PyQt5.QtCore import Qt, QTimer
+from PyQt6.QtWidgets import QApplication
+from PyQt6.QtGui import QPalette, QColor
+from PyQt6.QtCore import Qt, QTimer
 from main_window import MainWindow
 import gc
 
 class PerformanceOptimizedApp(QApplication):
     def __init__(self, argv):
         # Imposta attributi DPI PRIMA di creare l'applicazione
-        QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
-        QApplication.setAttribute(Qt.AA_UseHighDpiPixmaps, True)
+        #QApplication.setAttribute(Qt.ApplicationAttribute.AA_EnableHighDpiScaling, True)
+        #QApplication.setAttribute(Qt.ApplicationAttribute.AA_UseHighDpiPixmaps, True)
         
         super().__init__(argv)
         
         # Impostazioni per ridurre il consumo di risorse
-        self.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
+        #self.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
 
 def setup_logging():
     """Configura il logging per l'applicazione"""
@@ -54,21 +54,21 @@ def configure_dark_theme(app):
     
     # Definizione colori tema scuro
     dark_palette = {
-        'Window': QColor("#222222"),
-        'WindowText': QColor("#FFFFFF"),
-        'Base': QColor("#333333"),
-        'AlternateBase': QColor("#444444"),
-        'Text': QColor("#FFFFFF"),
-        'Button': QColor("#2D2D2D"),
-        'ButtonText': QColor("#FFFFFF"),
-        'BrightText': QColor("#FFFFFF"),
-        'Highlight': QColor("#666666"),
-        'HighlightedText': QColor("#FFFFFF")
+        QPalette.ColorRole.Window: QColor("#222222"),
+        QPalette.ColorRole.WindowText: QColor("#FFFFFF"),
+        QPalette.ColorRole.Base: QColor("#333333"),
+        QPalette.ColorRole.AlternateBase: QColor("#444444"),
+        QPalette.ColorRole.Text: QColor("#FFFFFF"),
+        QPalette.ColorRole.Button: QColor("#2D2D2D"),
+        QPalette.ColorRole.ButtonText: QColor("#FFFFFF"),
+        QPalette.ColorRole.BrightText: QColor("#FFFFFF"),
+        QPalette.ColorRole.Highlight: QColor("#666666"),
+        QPalette.ColorRole.HighlightedText: QColor("#FFFFFF")
     }
     
     # Applica colori
     for role, color in dark_palette.items():
-        palette.setColor(getattr(QPalette, role), color)
+        palette.setColor(role, color)
     
     app.setPalette(palette)
     app.setStyle('Fusion')  # Stile che supporta bene i temi personalizzati
@@ -112,7 +112,7 @@ def main():
         sys.excepthook = global_exception_handler
 
         # Avvio applicazione
-        exit_code = app.exec_()
+        exit_code = app.exec()
         logging.info(f"Chiusura Navigo Browser. Exit Code: {exit_code}")
         
         return exit_code

@@ -1,6 +1,6 @@
-from PyQt5.QtWidgets import QTabBar, QTabWidget, QStylePainter, QStyleOptionTab
-from PyQt5.QtCore import QSize, QRect, QRectF, Qt
-from PyQt5.QtGui import QPainterPath, QColor, QFont
+from PyQt6.QtWidgets import QTabBar, QTabWidget, QStylePainter, QStyleOptionTab
+from PyQt6.QtCore import QSize, QRect, QRectF, Qt
+from PyQt6.QtGui import QPainterPath, QColor, QFont
 from styles import VERTICAL_TAB_BAR_STYLE, VERTICAL_TAB_WIDGET_STYLE
 from custom_titlebar import load_custom_font
 
@@ -8,7 +8,7 @@ class VerticalTabBar(QTabBar):
     def __init__(self, parent=None):
         super(VerticalTabBar, self).__init__(parent)
         self.font_family = load_custom_font()
-        self.setMinimumWidth(50)  # Modifica questa linea
+        self.setMinimumWidth(50)
         self.setExpanding(True)
         self.setStyleSheet(f"""
             QTabBar {{
@@ -38,10 +38,6 @@ class VerticalTabBar(QTabBar):
             }}
         """)
 
-    def tabSizeHint(self, index):
-        width = max(50, self.width())  # Assicura una larghezza minima di 100px
-        return QSize(width, 50)
-
     def paintEvent(self, event):
         painter = QStylePainter(self)
         
@@ -63,12 +59,12 @@ class VerticalTabBar(QTabBar):
             # Testo con il nuovo font
             text = self.tabText(index)
             text_rect = QRect(tab_rect.left() + 30, tab_rect.top(), tab_rect.width() - 60, tab_rect.height())
-            painter.setPen(Qt.white)
+            painter.setPen(QColor("white"))  # Modifica qui
             painter.setFont(QFont(self.font_family))  # Imposta il font per il testo
-            painter.drawText(text_rect, Qt.AlignVCenter | Qt.AlignLeft, text)
+            painter.drawText(text_rect, Qt.AlignmentFlag.AlignVCenter | Qt.AlignmentFlag.AlignLeft, text)
             
             # Pulsante di chiusura
-            close_button = self.tabButton(index, QTabBar.RightSide)
+            close_button = self.tabButton(index, QTabBar.ButtonPosition.RightSide)
             if close_button:
                 close_rect = QRect(tab_rect.right() - 25, tab_rect.top() + 15, 20, 20)
                 close_button.setGeometry(close_rect)
@@ -78,7 +74,7 @@ class VerticalTabWidget(QTabWidget):
     def __init__(self, parent=None):
         super(VerticalTabWidget, self).__init__(parent)
         self.setTabBar(VerticalTabBar())
-        self.setTabPosition(QTabWidget.West)
+        self.setTabPosition(QTabWidget.TabPosition.West)  # Modifica qui
         self.setTabsClosable(True)
         self.setMovable(True)
         self.setMinimumWidth(50)

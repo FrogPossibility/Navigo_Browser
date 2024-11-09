@@ -3,7 +3,7 @@ import threading
 import time
 import logging
 import gc
-from PyQt5.QtCore import QObject, pyqtSignal, QTimer
+from PyQt6.QtCore import QObject, pyqtSignal, QTimer
 
 class PerformanceMonitor(QObject):
     performance_warning = pyqtSignal(str, int)

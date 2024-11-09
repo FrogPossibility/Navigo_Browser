@@ -1,8 +1,9 @@
 import os
-from PyQt5.QtCore import Qt, QUrl, QRectF, QTimer
-from PyQt5.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QStackedWidget, QPushButton, QLineEdit
-from PyQt5.QtWebEngineWidgets import QWebEngineView, QWebEngineProfile, QWebEngineSettings
-from PyQt5.QtGui import QPainterPath, QRegion, QIcon
+from PyQt6.QtCore import Qt, QUrl, QRectF, QTimer
+from PyQt6.QtWidgets import QMainWindow, QWidget, QVBoxLayout, QHBoxLayout, QSplitter, QStackedWidget, QPushButton, QLineEdit
+from PyQt6.QtWebEngineWidgets import QWebEngineView
+from PyQt6.QtWebEngineCore import QWebEngineProfile, QWebEngineSettings  # Import corretto
+from PyQt6.QtGui import QPainterPath, QRegion, QIcon
 from custom_widgets import VerticalTabWidget
 from custom_titlebar import CustomTitleBar
 
@@ -15,21 +16,13 @@ import logging
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
-        
-        profile = QWebEngineProfile.defaultProfile()
-        profile.setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
-        
-        QWebEngineSettings.globalSettings().setAttribute(QWebEngineSettings.ShowScrollBars, True)
-        QWebEngineProfile.defaultProfile().setHttpUserAgent("Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36")
 
-        settings = QWebEngineSettings.globalSettings()
-        settings.setAttribute(QWebEngineSettings.JavascriptEnabled, True)
-        settings.setAttribute(QWebEngineSettings.PluginsEnabled, True)
-        settings.setAttribute(QWebEngineSettings.FullScreenSupportEnabled, True)
-        settings.setAttribute(QWebEngineSettings.ScrollAnimatorEnabled, True)
-        settings.setAttribute(QWebEngineSettings.ErrorPageEnabled, True)
-        settings.setAttribute(QWebEngineSettings.WebGLEnabled, True)
-        settings.setAttribute(QWebEngineSettings.Accelerated2dCanvasEnabled, True)
+        # Crea un profilo per le impostazioni del motore web
+        profile = QWebEngineProfile.defaultProfile()
+
+        # Configura le impostazioni del profilo
+        settings = profile.settings()
+
 
         # Inizializza monitor prestazioni
         self.performance_monitor = PerformanceMonitor(self)
@@ -51,11 +44,8 @@ class MainWindow(QMainWindow):
         self.optimization_timer.timeout.connect(self.periodic_optimization)
         self.optimization_timer.start(300000)  # Ogni 5 minuti
 
-
-        
-
-        self.setWindowFlags(Qt.FramelessWindowHint)
-        self.setAttribute(Qt.WA_TranslucentBackground, False)
+        self.setWindowFlags(Qt.WindowType.FramelessWindowHint)
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground, False)
         self.setStyleSheet("""
             QMainWindow {
                 background-color: #1e1e1e;
@@ -80,7 +70,7 @@ class MainWindow(QMainWindow):
         content_layout.setSpacing(0)
         
         # Crea il QSplitter
-        self.splitter = QSplitter(Qt.Horizontal)
+        self.splitter = QSplitter(Qt.Orientation.Horizontal)
         self.splitter.setHandleWidth(2)
         self.splitter.setStyleSheet("""
             QSplitter::handle {
