@@ -20,8 +20,6 @@ class MainWindow(QMainWindow):
         # Crea un profilo per le impostazioni del motore web
         profile = QWebEngineProfile.defaultProfile()
 
-        # Configura le impostazioni del profilo
-        settings = profile.settings()
 
 
         # Inizializza monitor prestazioni

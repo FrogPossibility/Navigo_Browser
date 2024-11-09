@@ -8,8 +8,15 @@ class ResourceOptimizer:
         
         # Configurazione profilo
         profile = QWebEngineProfile.defaultProfile()
+        settings = profile.settings()
+        
+        # Impostazioni valide  # Carica automaticamente le immagini # Supporto per modalità a schermo intero
+
+        # Nota: Non ci sono impostazioni per LocalStorage in QWebEngineSettings in PyQt6
+
+        # Configurazione della cache
         profile.setHttpCacheMaximumSize(100 * 1024 * 1024)  # 100 MB
-        profile.setHttpCacheType(QWebEngineProfile.HttpCacheType.DiskHttpCache)  # Modifica qui
+        profile.setHttpCacheType(QWebEngineProfile.HttpCacheType.DiskHttpCache)  # Cache su disco
         
         return profile
 
