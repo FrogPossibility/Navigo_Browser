@@ -23,17 +23,13 @@ class ResourceOptimizer:
 
     @staticmethod
     def setup_lazy_loading(browser):
-        """Implementa caricamento lazy delle risorse"""
         def preload_critical_resources():
-            # Logica di precaricamento risorse critiche
             browser.page().runJavaScript("""
-                // Ottimizza caricamento risorse
                 document.querySelectorAll('img').forEach(img => {
                     img.loading = 'lazy';
                 });
             """)
         
-        # Carica risorse dopo un breve ritardo
         QTimer.singleShot(1000, preload_critical_resources)
 
 class ResourceInterceptor:

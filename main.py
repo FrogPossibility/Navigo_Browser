@@ -39,7 +39,7 @@ def setup_performance_optimizations(app, window):
     def periodic_gc():
         collected = gc.collect()
         logging.info(f"Garbage Collection: collected {collected} objects")
-    
+
     # Timer per garbage collection ogni 5 minuti
     gc_timer = QTimer()
     gc_timer.timeout.connect(periodic_gc)

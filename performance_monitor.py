@@ -74,10 +74,10 @@ class PerformanceMonitor(QObject):
                     logging.warning(warning_msg)
                     self.performance_warning.emit(warning_msg, memory_usage)
 
-                time.sleep(60)  # Controlla ogni minuto
+                time.sleep(1)  # Controlla ogni minuto
             except Exception as e:
                 logging.error(f"Performance monitoring error: {e}")
-                time.sleep(60)
+                time.sleep(1)
 
     def _periodic_optimization(self):
         """Azioni periodiche di ottimizzazione"""
