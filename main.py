@@ -7,6 +7,7 @@ from PyQt6.QtGui import QPalette, QColor
 from PyQt6.QtCore import Qt, QTimer
 from main_window import MainWindow
 import gc
+import subprocess
 
 class PerformanceOptimizedApp(QApplication):
     def __init__(self, argv):
@@ -78,6 +79,8 @@ def main():
 
 
     try:
+        subprocess.Popen(['python', '-m', 'http.server', '8000']) # per il file blank.html
+
         # Configurazione logging
         setup_logging()
         logging.info("Avvio Navigo Browser")
