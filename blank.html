@@ -214,6 +214,7 @@
 
         function changeBackground() {
             const bgUrl = document.getElementById('bgUrl').value;
+            console.log("Setting background to:", bgUrl); // Aggiungi questo log
             document.body.style.backgroundImage = `url('${bgUrl}')`;
             localStorage.setItem('background', bgUrl);
         }

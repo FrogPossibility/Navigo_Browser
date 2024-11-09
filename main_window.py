@@ -139,12 +139,11 @@ class MainWindow(QMainWindow):
         # Ottimizza caricamento risorse per ogni tab
         ResourceOptimizer.setup_lazy_loading(browser)
         
-        # Modifica questa parte per gestire le nuove tab
+        # Modifica questa parte per caricare blank.html tramite il server HTTP
         if url is None or url == '' or url == 'about:blank':
-            browser.setUrl(self.blank_html_url)
+            browser.setUrl(QUrl("http://localhost:8000/blank.html"))  # Cambia la porta se necessario
         else:
             browser.setUrl(QUrl(str(url)))
-
         # Aggiungi questo handler per gestire i cambi di URL
         browser.urlChanged.connect(lambda qurl, b=browser: self.handle_url_change(b, qurl))
 
@@ -172,7 +171,7 @@ class MainWindow(QMainWindow):
     def handle_url_change(self, browser, qurl):
         # Quando l'URL cambia in about:blank, reindirizza a blank.html
         if qurl.toString() == 'about:blank':
-            browser.setUrl(self.blank_html_url)
+            browser.setUrl(QUrl("http://localhost:8000/blank.html"))
 
     def on_tab_changed(self, index):
         self.page_container.setCurrentIndex(index)
