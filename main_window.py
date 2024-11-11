@@ -24,14 +24,10 @@ class MainWindow(QMainWindow):
 
         # Inizializza monitor prestazioni
         self.performance_monitor = PerformanceMonitor(self)
-        self.performance_monitor.set_main_window(self)
         
-        # Avvia monitoraggio
-        self.performance_monitor.start_monitoring()
         
         # Ottimizza motore web
         self.web_profile = ResourceOptimizer.optimize_web_engine()
-        self.performance_monitor.set_main_window(self.web_profile)
         
         # Interceptor risorse
         self.resource_interceptor = ResourceInterceptor()
