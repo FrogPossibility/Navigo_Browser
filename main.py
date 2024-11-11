@@ -11,15 +11,7 @@ import subprocess
 
 class PerformanceOptimizedApp(QApplication):
     def __init__(self, argv):
-        # Imposta attributi DPI PRIMA di creare l'applicazione
-        #QApplication.setAttribute(Qt.ApplicationAttribute.AA_EnableHighDpiScaling, True)
-        #QApplication.setAttribute(Qt.ApplicationAttribute.AA_UseHighDpiPixmaps, True)
-        
         super().__init__(argv)
-        
-        # Impostazioni per ridurre il consumo di risorse
-        #self.setHighDpiScaleFactorRoundingPolicy(Qt.HighDpiScaleFactorRoundingPolicy.PassThrough)
-
 def setup_logging():
     """Configura il logging per l'applicazione"""
     log_dir = os.path.join(os.path.dirname(__file__), 'logs')
@@ -76,8 +68,6 @@ def configure_dark_theme(app):
 
 def main():
     """Punto di ingresso principale dell'applicazione"""
-
-
     try:
         subprocess.Popen(['python', '-m', 'http.server', '8000']) # per il file blank.html
 

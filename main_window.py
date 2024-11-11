@@ -17,21 +17,14 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
 
-        # Crea un profilo per le impostazioni del motore web
-        profile = QWebEngineProfile.defaultProfile()
-
-
-
         # Inizializza monitor prestazioni
         self.performance_monitor = PerformanceMonitor(self)
-        
         
         # Ottimizza motore web
         self.web_profile = ResourceOptimizer.optimize_web_engine()
         
         # Interceptor risorse
-        self.resource_interceptor = ResourceInterceptor()
-        
+        self.resource_interceptor = ResourceInterceptor() 
         
         # Timer per ottimizzazioni periodiche
         self.optimization_timer = QTimer()
@@ -47,7 +40,6 @@ class MainWindow(QMainWindow):
             }
         """)
         
-
         main_widget = QWidget()
         main_layout = QVBoxLayout(main_widget)
         main_layout.setContentsMargins(0, 0, 0, 0)
@@ -95,7 +87,6 @@ class MainWindow(QMainWindow):
         self.page_container = QStackedWidget()
         self.page_container.setMinimumWidth(400)
     
-        
         # Aggiungi i widget al splitter
         self.splitter.addWidget(self.tab_widget)
         self.splitter.addWidget(self.page_container)
@@ -107,10 +98,8 @@ class MainWindow(QMainWindow):
         # Imposta le proporzioni iniziali
         self.splitter.setSizes([200, self.width() - 200])
     
-        
         self.splitter.setCollapsible(0, False)
 
-        
         content_layout.addWidget(self.splitter)
         main_layout.addWidget(content_container)
         
@@ -119,13 +108,11 @@ class MainWindow(QMainWindow):
         
         self.setCentralWidget(main_widget)
 
-
         # Aggiungi la prima tab
         self.add_new_tab()
         
         # Applica gli angoli arrotondati
         self.apply_rounded_corners()
-
 
     def add_new_tab(self, url=None):
         browser = QWebEngineView()
@@ -219,7 +206,6 @@ class MainWindow(QMainWindow):
             self.splitter.setSizes([50, sizes[1] + (sizes[0] - 50)])
         elif sizes[0] > 200:
             self.splitter.setSizes([200, sizes[1] + (sizes[0] - 200)])
-
 
     def set_default_zoom(self, browser):
         browser.setZoomFactor(1.0)  # Puoi regolare questo valore se necessario
