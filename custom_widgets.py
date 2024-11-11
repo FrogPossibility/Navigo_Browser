@@ -17,11 +17,11 @@ class VerticalTabBar(QTabBar):
             QTabBar::tab {{
                 height: 50px;
                 width: 200px;
-                margin: 5px;
+                margin: 0px;
                 border-radius: 10px;
                 background-color: #333333;
                 text-align: left;
-                padding: 5px;
+                padding: 1px;
                 font-family: '{self.font_family}';
             }}
             QTabBar::tab:selected {{
