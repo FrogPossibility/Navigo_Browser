@@ -1,3 +1,0 @@
-2024-11-11 16:38:40,736 - root - INFO - Avvio Navigo Browser
-2024-11-11 16:40:06,134 - root - ERROR - Error during window close: 'PerformanceMonitor' object has no attribute 'stop_monitoring'
-2024-11-11 16:40:06,199 - root - INFO - Chiusura Navigo Browser. Exit Code: 0
