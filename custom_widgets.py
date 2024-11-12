@@ -40,16 +40,18 @@ class VerticalTabBar(QTabBar):
 
     def paintEvent(self, event):
         painter = QStylePainter(self)
-        
+
         for index in range(self.count()):
             option = QStyleOptionTab()
             self.initStyleOption(option, index)
             tab_rect = self.tabRect(index)
-            
-            # Background della tab
+
+            # Background della tab con ombre
             path = QPainterPath()
             path.addRoundedRect(QRectF(tab_rect), 10, 10)
             painter.fillPath(path, QColor("#333333") if index != self.currentIndex() else QColor("#444444"))
+            painter.setPen(QColor("#444444"))
+            painter.drawRoundedRect(QRectF(tab_rect), 10, 10) 
             
             # Icona
             if not self.tabIcon(index).isNull():
@@ -70,6 +72,9 @@ class VerticalTabBar(QTabBar):
                 close_button.setGeometry(close_rect)
                 close_button.show()
 
+                # Stile per il pulsante di chiusura
+                close_button .setStyleSheet("background-color: transparent; border: none;") 
+                
 class VerticalTabWidget(QTabWidget):
     def __init__(self, parent=None):
         super(VerticalTabWidget, self).__init__(parent)
