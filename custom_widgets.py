@@ -1,4 +1,4 @@
-from PyQt6.QtWidgets import QTabBar, QTabWidget, QStylePainter, QStyleOptionTab
+from PyQt6.QtWidgets import QTabBar, QTabWidget, QStylePainter, QStyleOptionTab, QSizePolicy
 from PyQt6.QtCore import QSize, QRect, QRectF, Qt
 from PyQt6.QtGui import QPainterPath, QColor, QFont
 from styles import VERTICAL_TAB_BAR_STYLE, VERTICAL_TAB_WIDGET_STYLE
@@ -74,14 +74,20 @@ class VerticalTabBar(QTabBar):
 
                 # Stile per il pulsante di chiusura
                 close_button .setStyleSheet("background-color: transparent; border: none;") 
-                
+
+    def tabSizeHint(self, index):
+        # Calcola la larghezza delle tab in base alla larghezza del widget
+        tab_width = self.parent().width() - 0  # Sottrai un margine
+        return QSize(tab_width, 50)  # Altezza fissa di 50px
+    
 class VerticalTabWidget(QTabWidget):
     def __init__(self, parent=None):
         super(VerticalTabWidget, self).__init__(parent)
         self.setTabBar(VerticalTabBar())
-        self.setTabPosition(QTabWidget.TabPosition.West)  # Modifica qui
+        self.setTabPosition(QTabWidget.TabPosition.West)
         self.setTabsClosable(True)
         self.setMovable(True)
+        self.setSizePolicy(QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Expanding)  # Modifica qui
         self.setMinimumWidth(50)
         self.setMaximumWidth(200)
         self.setStyleSheet("""

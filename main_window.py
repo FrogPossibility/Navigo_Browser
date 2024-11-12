@@ -11,8 +11,6 @@ from performance_monitor import PerformanceMonitor
 from resource_optimizer import ResourceOptimizer, ResourceInterceptor
 import logging
 
-
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
@@ -183,7 +181,6 @@ class MainWindow(QMainWindow):
         if index >= 0:
             truncated_title = (title[:15] + '...') if len(title) > 20 else title
             self.tab_widget.setTabText(index, truncated_title)
-
 
     def apply_rounded_corners(self):
         radius = 20

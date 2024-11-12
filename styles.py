@@ -7,7 +7,7 @@ VERTICAL_TAB_BAR_STYLE = """
         height: 50px;
         width: 200px;
         margin: 5px; /* Aggiungere margine per separazione */
-        border-radius: 10px; /* Arrotondare gli angoli */
+        border-radius: 15px; /* Arrotondare gli angoli */
         background-color: #333333; /* Colore di base per le schede */
         color: #ffffff; /* Colore del testo */
         font-size: 14px;
