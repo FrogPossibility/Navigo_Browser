@@ -85,7 +85,7 @@ Please read our [Contributing Guidelines](CONTRIBUTING.md) before making a contr
 
 ## 📜 License
 
-Quantum Browser is released under the MIT License. See the [LICENSE](LICENSE) file for details.
+Navigo Browser is released under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
