@@ -12,6 +12,9 @@ class CustomTitleBar(QWidget):
         self.parent = parent
         self.tab_widget = tab_widget
         
+        # Initialize pressing attribute
+        self.pressing = False  # Add this line
+        
         # Carica il font Poppins
         self.font_family = load_custom_font()
 
@@ -134,17 +137,16 @@ class CustomTitleBar(QWidget):
             self.parent.showMaximized()
 
     def mousePressEvent(self, event):
-        self.start = self.mapToGlobal(event.pos())
+        self.windowPos = self.parent.frameGeometry().topLeft()
+        self.start = event.globalPosition().toPoint()  # Corrected here
         self.pressing = True
 
     def mouseMoveEvent(self, event):
         if self.pressing:
             if self.parent.isMaximized():
                 self.parent.showNormal()
-            end = self.mapToGlobal(event.pos())
-            movement = end - self.start
-            self.parent.move(self.parent.pos() + movement)
-            self.start = end
+            delta = event.globalPosition().toPoint() - self.start  # Corrected here
+            self.parent.move(self.windowPos + delta)
 
     def mouseReleaseEvent(self, event):
         self.pressing = False
