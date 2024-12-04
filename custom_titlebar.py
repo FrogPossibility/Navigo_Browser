@@ -138,15 +138,14 @@ class CustomTitleBar(QWidget):
 
     def mousePressEvent(self, event):
         self.windowPos = self.parent.frameGeometry().topLeft()
-        self.start = event.globalPosition().toPoint()  # Corrected here
+        
         self.pressing = True
 
     def mouseMoveEvent(self, event):
         if self.pressing:
             if self.parent.isMaximized():
                 self.parent.showNormal()
-            delta = event.globalPosition().toPoint() - self.start  # Corrected here
-            self.parent.move(self.windowPos + delta)
+            self.parent.windowHandle().startSystemMove()
 
     def mouseReleaseEvent(self, event):
         self.pressing = False
